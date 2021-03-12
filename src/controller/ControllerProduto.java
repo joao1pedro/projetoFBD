@@ -6,7 +6,6 @@
 package controller;
 
 import dao.DAOProduto;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,14 +52,19 @@ public class ControllerProduto {
         try {
             DAOProduto daop = new DAOProduto();
 
-            for (ModelProduto p : daop.consultaProduto()) {
-                viewConsultarP.table.addRow(new Object[]{
-                    p.getId(),
-                    p.getNome(),
-                    p.getQuantidade(),
-                    p.getCusto(),
-                    p.getValor()
-                });
+            if (daop.consultaProduto() == null) {
+                viewConsultarP.table.setNumRows(0);
+            } else {
+
+                for (ModelProduto p : daop.consultaProduto()) {
+                    viewConsultarP.table.addRow(new Object[]{
+                        p.getId(),
+                        p.getNome(),
+                        p.getQuantidade(),
+                        p.getCusto(),
+                        p.getValor()
+                    });
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(ViewConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,6 +93,21 @@ public class ControllerProduto {
             } catch (SQLException ex) {
                 Logger.getLogger(ControllerProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+
+    public void removeProduto() {
+        int row = viewConsultarP.jTableProdutos.getSelectedRow();
+        int id = (int) viewConsultarP.table.getValueAt(row, 0);
+        
+        ModelProduto produto = new ModelProduto(id);
+        
+        try {
+            DAOProduto daop = new DAOProduto();
+            daop.removeProduto(produto);
+            JOptionPane.showMessageDialog(null, "Produto deletado com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

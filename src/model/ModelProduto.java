@@ -24,6 +24,10 @@ public class ModelProduto {
         this.nome = nome;
     }
 
+    public ModelProduto(int id) {
+        this.id = id;
+    }
+
     public ModelProduto(String nome, int quantidade, float custo, float valor, int id) {
         this.nome = nome;
         this.quantidade = quantidade;
@@ -77,6 +81,10 @@ public class ModelProduto {
 
     public void setValor(float valor) {
         this.valor = valor;
+    }
+
+    public int getInt() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

@@ -126,4 +126,26 @@ public class DAOProduto {
         }
         return produtos;
     }
+    
+    public void removeProduto(ModelProduto produto) throws SQLException{
+        String sql = "DELETE FROM produto  WHERE cod_prod = ?";
+        
+        Connection con = new ConnectionFactory().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, produto.getId());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
+        }
+    }
 }

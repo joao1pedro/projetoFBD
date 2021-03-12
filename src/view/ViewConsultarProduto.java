@@ -9,6 +9,7 @@ import controller.ControllerProduto;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -28,6 +29,14 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
 
     public void setjTFNmProduto(JTextField jTFNmProduto) {
         this.jTFNmProduto = jTFNmProduto;
+    }
+
+    public JTable getjTableProdutos() {
+        return jTableProdutos;
+    }
+
+    public void setjTableProdutos(JTable jTableProdutos) {
+        this.jTableProdutos = jTableProdutos;
     }
 
     /**
@@ -63,6 +72,7 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProdutos = new javax.swing.JTable();
         jBTConsultar = new javax.swing.JButton();
+        jBTDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +115,13 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
             }
         });
 
+        jBTDeletar.setText("DELETAR");
+        jBTDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTDeletarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +143,10 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBTDeletar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(17, Short.MAX_VALUE))))
         );
@@ -143,7 +163,9 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jBTDeletar))
                 .addContainerGap())
         );
 
@@ -165,6 +187,11 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
             Logger.getLogger(ViewConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBTConsultarActionPerformed
+
+    private void jBTDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTDeletarActionPerformed
+        // TODO add your handling code here:
+        controller.removeProduto();
+    }//GEN-LAST:event_jBTDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,11 +231,12 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBTConsultar;
+    private javax.swing.JButton jBTDeletar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFNmProduto;
-    private javax.swing.JTable jTableProdutos;
+    public javax.swing.JTable jTableProdutos;
     // End of variables declaration//GEN-END:variables
 }
