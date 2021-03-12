@@ -30,6 +30,8 @@ public class ViewMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jBTCadastrarProduto = new javax.swing.JButton();
         jBTConsultarProduto = new javax.swing.JButton();
+        jBTCadastrarCliente = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +51,15 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
 
+        jBTCadastrarCliente.setText("CADASTRAR CLIENTE");
+        jBTCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTCadastrarClienteActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("CONSULTAR CLIENTE");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,15 +67,16 @@ public class ViewMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
+                        .addGap(293, 293, 293)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBTCadastrarProduto))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBTConsultarProduto)))
-                .addContainerGap(189, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBTConsultarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBTCadastrarProduto)
+                            .addComponent(jBTCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,7 +87,11 @@ public class ViewMenu extends javax.swing.JFrame {
                 .addComponent(jBTCadastrarProduto)
                 .addGap(18, 18, 18)
                 .addComponent(jBTConsultarProduto)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBTCadastrarCliente)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(283, Short.MAX_VALUE))
         );
 
         pack();
@@ -94,6 +110,13 @@ public class ViewMenu extends javax.swing.JFrame {
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBTConsultarProdutoActionPerformed
+
+    private void jBTCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTCadastrarClienteActionPerformed
+        // TODO add your handling code here:
+        ViewCadastrarCliente v = new ViewCadastrarCliente();
+        v.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jBTCadastrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,8 +155,10 @@ public class ViewMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBTCadastrarCliente;
     private javax.swing.JButton jBTCadastrarProduto;
     private javax.swing.JButton jBTConsultarProduto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
