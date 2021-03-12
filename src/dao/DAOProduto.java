@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.ModelProduto;
 
 /**
@@ -18,66 +20,110 @@ import model.ModelProduto;
  * @author joao
  */
 public class DAOProduto {
-    private final Connection con;
 
-    public DAOProduto(Connection con) {
-        this.con = con;
-    }
-    
-    public void insert(ModelProduto produto) throws SQLException{
+    public void insert(ModelProduto produto) throws SQLException {
         String sql = "insert into produto(nome,quantidade,custo,valor) values(?,?,?,?)";
-        
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, produto.getNome());
-        stmt.setInt(2, produto.getQuantidade());
-        stmt.setFloat(3, produto.getCusto());
-        stmt.setFloat(4, produto.getValor());
-        stmt.execute();
-        con.close();
-    }
-    
-    public List<ModelProduto> consultaProduto() throws SQLException{
-        String sql = "select * from produto";
-        
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.execute();
-        ResultSet rs = stmt.getResultSet();
-        
-        List<ModelProduto> produtos = new ArrayList<>();
-        
-        while(rs.next()){
-            ModelProduto produto = new ModelProduto();
-            
-            produto.setId(rs.getInt("cod_prod"));
-            produto.setNome(rs.getString("nome"));
-            produto.setQuantidade(rs.getInt("quantidade"));
-            produto.setCusto(rs.getFloat("custo"));
-            produto.setValor(rs.getFloat("valor"));
-            produtos.add(produto);
+        Connection con = new ConnectionFactory().getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, produto.getNome());
+            stmt.setInt(2, produto.getQuantidade());
+            stmt.setFloat(3, produto.getCusto());
+            stmt.setFloat(4, produto.getValor());
+            stmt.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
         }
-        con.close();
+    }
+
+    public List<ModelProduto> consultaProduto() throws SQLException {
+        String sql = "select * from produto";
+
+        Connection con = new ConnectionFactory().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<ModelProduto> produtos = null;
+
+        try {
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                if (produtos == null) {
+                    produtos = new ArrayList<>();
+                }
+                ModelProduto produto = new ModelProduto();
+                produto.setId(rs.getInt("cod_prod"));
+                produto.setNome(rs.getString("nome"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setCusto(rs.getFloat("custo"));
+                produto.setValor(rs.getFloat("valor"));
+                produtos.add(produto);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null && !rs.isClosed()) {
+                rs.close();
+            }
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
+        }
         return produtos;
     }
-    
-    public List<ModelProduto> consultaProduto(ModelProduto produto) throws SQLException{
+
+    public List<ModelProduto> procurar(ModelProduto produto) throws SQLException {
         String sql = "select * from produto where nome = ?";
-        
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, produto.getNome());
-        stmt.execute();
-        ResultSet rs = stmt.getResultSet();
-        
-        List<ModelProduto> produtos = new ArrayList<>();
-        
-        while(rs.next()){
-            produto.setId(rs.getInt("cod_prod"));
-            produto.setNome(rs.getString("nome"));
-            produto.setQuantidade(rs.getInt("quantidade"));
-            produto.setCusto(rs.getFloat("custo"));
-            produto.setValor(rs.getFloat("valor"));
-            produtos.add(produto);
+
+        Connection con = new ConnectionFactory().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<ModelProduto> produtos = null;
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, produto.getNome());
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                if (produtos == null) {
+                    produtos = new ArrayList<>();
+                }
+                produto.setId(rs.getInt("cod_prod"));
+                produto.setNome(rs.getString("nome"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setCusto(rs.getFloat("custo"));
+                produto.setValor(rs.getFloat("valor"));
+                produtos.add(produto);
+            }
+
+            return produtos;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null && !rs.isClosed()) {
+                rs.close();
+            }
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
         }
-        con.close();
         return produtos;
     }
 }

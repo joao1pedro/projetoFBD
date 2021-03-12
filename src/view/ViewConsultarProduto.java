@@ -6,6 +6,9 @@
 package view;
 
 import controller.ControllerProduto;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -33,13 +36,14 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
     public ViewConsultarProduto() {
         initComponents();
         table = (DefaultTableModel) jTableProdutos.getModel();
-        table.setNumRows(0);
+        
         jTableProdutos.setRowSorter(new TableRowSorter(table));
         controller = new ControllerProduto(this);
         readTable();
     }
-    
-    public final void readTable(){
+
+    public final void readTable() {
+        table.setNumRows(0);
         controller.consultaProduto();
     }
 
@@ -154,8 +158,12 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jBTConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTConsultarActionPerformed
-    
-        controller.consultaNomeProduto();
+        table.setNumRows(0);
+        try {
+            controller.procurar();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBTConsultarActionPerformed
 
     /**

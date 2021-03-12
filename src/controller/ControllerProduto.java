@@ -5,7 +5,6 @@
  */
 package controller;
 
-import dao.ConnectionFactory;
 import dao.DAOProduto;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -41,8 +40,7 @@ public class ControllerProduto {
 
         ModelProduto produto = new ModelProduto(nome, quantidade, custo, valor);
         try {
-            Connection con = new ConnectionFactory().getConnection();
-            DAOProduto daoProduto = new DAOProduto(con);
+            DAOProduto daoProduto = new DAOProduto();
             daoProduto.insert(produto);
 
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
@@ -50,15 +48,12 @@ public class ControllerProduto {
             Logger.getLogger(ViewCadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void consultaProduto(){
-        Connection con;
-        
+
+    public void consultaProduto() {
         try {
-            con = new ConnectionFactory().getConnection();
-            DAOProduto daop = new DAOProduto(con);
-            
-            for(ModelProduto p: daop.consultaProduto()){
+            DAOProduto daop = new DAOProduto();
+
+            for (ModelProduto p : daop.consultaProduto()) {
                 viewConsultarP.table.addRow(new Object[]{
                     p.getId(),
                     p.getNome(),
@@ -71,30 +66,29 @@ public class ControllerProduto {
             Logger.getLogger(ViewConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void consultaNomeProduto(){
-        Connection con;
-        
+
+    public void procurar() throws SQLException {
         String nome = viewConsultarP.getjTFNmProduto().getText();
-        
+
         ModelProduto produto = new ModelProduto(nome);
-        
-        try {
-            con = new ConnectionFactory().getConnection();
-            DAOProduto daop = new DAOProduto(con);
-            daop.consultaProduto(produto);
-            
-            for(ModelProduto p: daop.consultaProduto()){
-                viewConsultarP.table.addRow(new Object[]{
-                    p.getId(),
-                    p.getNome(),
-                    p.getQuantidade(),
-                    p.getCusto(),
-                    p.getValor()
-                });
+        DAOProduto daop = new DAOProduto();
+
+        if (daop.procurar(produto) == null) {
+            consultaProduto();
+        } else {
+            try {
+                for (ModelProduto p : daop.procurar(produto)) {
+                    viewConsultarP.table.addRow(new Object[]{
+                        p.getId(),
+                        p.getNome(),
+                        p.getQuantidade(),
+                        p.getCusto(),
+                        p.getValor()
+                    });
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ControllerProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
