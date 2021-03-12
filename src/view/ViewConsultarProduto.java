@@ -73,6 +73,15 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
         jTableProdutos = new javax.swing.JTable();
         jBTConsultar = new javax.swing.JButton();
         jBTDeletar = new javax.swing.JButton();
+        jBTAlterar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTFnm = new javax.swing.JTextField();
+        jTFcusto = new javax.swing.JTextField();
+        jTFvalor = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTFid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +115,11 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableProdutos);
 
         jBTConsultar.setText("CONSULTAR");
@@ -122,6 +136,23 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
             }
         });
 
+        jBTAlterar.setText("ALTERAR");
+        jBTAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTAlterarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("NOME:");
+
+        jLabel4.setText("CUSTO:");
+
+        jLabel5.setText("VALOR:");
+
+        jLabel6.setText("ID:");
+
+        jTFid.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +167,7 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTFNmProduto))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 203, Short.MAX_VALUE)
+                                .addGap(0, 348, Short.MAX_VALUE)
                                 .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBTConsultar)
@@ -146,9 +177,25 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBTDeletar))
+                                .addComponent(jBTDeletar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBTAlterar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                        .addContainerGap(164, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFnm, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTFid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                .addComponent(jTFvalor, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTFcusto, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,10 +209,27 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
                     .addComponent(jBTConsultar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTFnm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTFcusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTFvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTFid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jBTDeletar))
+                    .addComponent(jBTDeletar)
+                    .addComponent(jBTAlterar))
                 .addContainerGap())
         );
 
@@ -180,8 +244,8 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jBTConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTConsultarActionPerformed
-        table.setNumRows(0);
         try {
+            table.setNumRows(0);
             controller.procurar();
         } catch (SQLException ex) {
             Logger.getLogger(ViewConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -192,6 +256,16 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.removeProduto();
     }//GEN-LAST:event_jBTDeletarActionPerformed
+
+    private void jBTAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTAlterarActionPerformed
+        // TODO add your handling code here:
+        controller.updateProduto();
+    }//GEN-LAST:event_jBTAlterarActionPerformed
+
+    private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
+        // TODO add your handling code here:
+        controller.selecionaLinha();
+    }//GEN-LAST:event_jTableProdutosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -230,13 +304,22 @@ public class ViewConsultarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBTAlterar;
     private javax.swing.JButton jBTConsultar;
     private javax.swing.JButton jBTDeletar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFNmProduto;
+    public javax.swing.JTextField jTFcusto;
+    public javax.swing.JTextField jTFid;
+    public javax.swing.JTextField jTFnm;
+    public javax.swing.JTextField jTFvalor;
     public javax.swing.JTable jTableProdutos;
     // End of variables declaration//GEN-END:variables
 }

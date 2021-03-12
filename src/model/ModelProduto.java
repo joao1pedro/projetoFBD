@@ -19,6 +19,13 @@ public class ModelProduto {
     public ModelProduto(){
         
     }
+
+    public ModelProduto(String nome, float custo, float valor, int id) {
+        this.nome = nome;
+        this.custo = custo;
+        this.valor = valor;
+        this.id = id;
+    }
     
     public ModelProduto(String nome){
         this.nome = nome;

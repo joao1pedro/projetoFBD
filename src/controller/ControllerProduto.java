@@ -30,7 +30,7 @@ public class ControllerProduto {
     public ControllerProduto(ViewCadastrarProduto view) {
         this.view = view;
     }
-
+ 
     public void registraProduto() {
         String nome = view.getjTFNome().getText();
         int quantidade = Integer.parseInt(view.getjTFQuantidade().getText());
@@ -109,5 +109,40 @@ public class ControllerProduto {
         } catch (SQLException ex) {
             Logger.getLogger(ControllerProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void updateProduto(){
+        
+        String nome = viewConsultarP.jTFnm.getText();
+        float custo = Float.parseFloat(viewConsultarP.jTFcusto.getText()) ;
+        float valor = Float.parseFloat(viewConsultarP.jTFvalor.getText());
+        int id = Integer.parseInt(viewConsultarP.jTFid.getText());
+        
+        ModelProduto produto = new ModelProduto(nome, custo, valor, id);
+        
+        try {
+            DAOProduto daop = new DAOProduto();
+            daop.updateProduto(produto);
+            JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void selecionaLinha(){
+        int row = viewConsultarP.jTableProdutos.getSelectedRow();
+        
+        int id = (int) viewConsultarP.table.getValueAt(row, 0);
+        String nome = viewConsultarP.table.getValueAt(row, 1).toString();
+        float custo = (float) viewConsultarP.table.getValueAt(row, 3);
+        float valor = (float) viewConsultarP.table.getValueAt(row, 4);
+        
+        String stringCusto = String.valueOf(custo);
+        String stringValor = String.valueOf(valor);
+        String stringId = String.valueOf(id);
+        
+        viewConsultarP.jTFnm.setText(nome);
+        viewConsultarP.jTFcusto.setText(stringCusto);
+        viewConsultarP.jTFvalor.setText(stringValor);
+        viewConsultarP.jTFid.setText(stringId);
     }
 }

@@ -149,6 +149,11 @@ public class ViewCadastrarProduto extends javax.swing.JFrame {
 
     private void jBTCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTCadastrarActionPerformed
         controller.registraProduto();
+        
+        jTFNome.setText(null);
+        jTFQuantidade.setText(null);
+        jTFCusto.setText(null);
+        jTFValor.setText(null);
     }//GEN-LAST:event_jBTCadastrarActionPerformed
 
     /**

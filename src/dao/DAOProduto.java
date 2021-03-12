@@ -132,10 +132,35 @@ public class DAOProduto {
         
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
-        ResultSet rs = null;
         try {
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, produto.getId());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
+        }
+    }
+    
+    public void updateProduto(ModelProduto produto) throws SQLException{
+        String sql = "UPDATE produto SET nome = ?, "
+                + "custo = ?, valor = ? WHERE cod_prod = ?;";
+        
+        Connection con = new ConnectionFactory().getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, produto.getNome());
+            stmt.setFloat(2, produto.getCusto());
+            stmt.setFloat(3, produto.getValor());
+            stmt.setInt(4, produto.getId());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
