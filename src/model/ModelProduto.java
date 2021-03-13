@@ -50,14 +50,6 @@ public class ModelProduto {
         this.valor = valor;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -90,9 +82,11 @@ public class ModelProduto {
         this.valor = valor;
     }
 
-    public int getInt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getId() {
+        return id;
     }
-    
-    
+
+    public void setId(int id) {
+        this.id = id;
+    }   
 }

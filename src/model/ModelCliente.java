@@ -21,17 +21,12 @@ public class ModelCliente {
     private String rua;
     private int numero;
     private String email;
-    private int id;
 
     public ModelCliente() {
     }
 
-    public ModelCliente(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public ModelCliente(int id) {
-        this.id = id;
+    public ModelCliente(String nome) {
+        this.nome = nome;
     }
 
     public ModelCliente(String nome, char sexo, String dataNascimento, String cpf, String estado, String cidade, String bairro, String rua, int numero, String email) {
@@ -45,20 +40,6 @@ public class ModelCliente {
         this.rua = rua;
         this.numero = numero;
         this.email = email;
-    }
-
-    public ModelCliente(String nome, char sexo, String dataNascimento, String cpf, String estado, String cidade, String bairro, String rua, int numero, String email, int id) {
-        this.nome = nome;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.rua = rua;
-        this.numero = numero;
-        this.email = email;
-        this.id = id;
     }
     
     public String getNome() {
@@ -139,17 +120,6 @@ public class ModelCliente {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    
-    
+    }   
     
 }

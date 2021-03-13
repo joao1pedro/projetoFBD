@@ -22,7 +22,7 @@ import model.ModelProduto;
 public class DAOProduto {
 
     public void insert(ModelProduto produto) throws SQLException {
-        String sql = "insert into produto(nome,quantidade,custo,valor) values(?,?,?,?)";
+        String sql = "INSERT INTO produto(nome,quantidade,custo,valor) VALUES(?,?,?,?)";
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
         try {
@@ -45,7 +45,7 @@ public class DAOProduto {
     }
 
     public List<ModelProduto> consultaProduto() throws SQLException {
-        String sql = "select * from produto";
+        String sql = "SELECT * FROM produto";
 
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
@@ -86,7 +86,7 @@ public class DAOProduto {
     }
 
     public List<ModelProduto> procurar(ModelProduto produto) throws SQLException {
-        String sql = "select * from produto where nome = ?";
+        String sql = "SELECT * FROM produto WHERE nome = ?";
 
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
@@ -110,7 +110,6 @@ public class DAOProduto {
                 produtos.add(produto);
             }
 
-            return produtos;
         } catch (SQLException ex) {
             Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -172,5 +171,36 @@ public class DAOProduto {
                 con.close();
             }
         }
+    }
+    
+    public boolean verificaProduto(ModelProduto produto) throws SQLException  {
+        String sql = "SELECT * FROM produto WHERE nome LIKE ?";
+
+        Connection con = new ConnectionFactory().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, produto.getNome());
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null && !rs.isClosed()) {
+                rs.close();
+            }
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
+        }
+        return false;
     }
 }

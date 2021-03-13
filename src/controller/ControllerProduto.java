@@ -30,7 +30,7 @@ public class ControllerProduto {
     public ControllerProduto(ViewCadastrarProduto view) {
         this.view = view;
     }
- 
+
     public void registraProduto() {
         String nome = view.getjTFNome().getText();
         int quantidade = Integer.parseInt(view.getjTFQuantidade().getText());
@@ -77,7 +77,7 @@ public class ControllerProduto {
         ModelProduto produto = new ModelProduto(nome);
         DAOProduto daop = new DAOProduto();
 
-        if (daop.procurar(produto) == null) {
+        if (!daop.verificaProduto(produto)) {
             consultaProduto();
         } else {
             try {
@@ -99,9 +99,9 @@ public class ControllerProduto {
     public void removeProduto() {
         int row = viewConsultarP.jTableProdutos.getSelectedRow();
         int id = (int) viewConsultarP.table.getValueAt(row, 0);
-        
+
         ModelProduto produto = new ModelProduto(id);
-        
+
         try {
             DAOProduto daop = new DAOProduto();
             daop.removeProduto(produto);
@@ -110,16 +110,16 @@ public class ControllerProduto {
             Logger.getLogger(ControllerProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void updateProduto(){
-        
+
+    public void updateProduto() {
+
         String nome = viewConsultarP.jTFnm.getText();
-        float custo = Float.parseFloat(viewConsultarP.jTFcusto.getText()) ;
+        float custo = Float.parseFloat(viewConsultarP.jTFcusto.getText());
         float valor = Float.parseFloat(viewConsultarP.jTFvalor.getText());
         int id = Integer.parseInt(viewConsultarP.jTFid.getText());
-        
+
         ModelProduto produto = new ModelProduto(nome, custo, valor, id);
-        
+
         try {
             DAOProduto daop = new DAOProduto();
             daop.updateProduto(produto);
@@ -128,18 +128,19 @@ public class ControllerProduto {
             Logger.getLogger(ControllerProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void selecionaLinha(){
+
+    public void selecionaLinha() {
         int row = viewConsultarP.jTableProdutos.getSelectedRow();
-        
+
         int id = (int) viewConsultarP.table.getValueAt(row, 0);
         String nome = viewConsultarP.table.getValueAt(row, 1).toString();
         float custo = (float) viewConsultarP.table.getValueAt(row, 3);
         float valor = (float) viewConsultarP.table.getValueAt(row, 4);
-        
+
         String stringCusto = String.valueOf(custo);
         String stringValor = String.valueOf(valor);
         String stringId = String.valueOf(id);
-        
+
         viewConsultarP.jTFnm.setText(nome);
         viewConsultarP.jTFcusto.setText(stringCusto);
         viewConsultarP.jTFvalor.setText(stringValor);
