@@ -7,6 +7,7 @@ package view;
 
 import controller.ControllerCliente;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
 /**
@@ -15,6 +16,23 @@ import javax.swing.JTextField;
  */
 public class ViewCadastrarCliente extends javax.swing.JFrame {
 
+    public JFormattedTextField getjTFDataNasc() {
+        return jTFDataNasc;
+    }
+
+    public void setjTFDataNasc(JFormattedTextField jTFDataNasc) {
+        this.jTFDataNasc = jTFDataNasc;
+    }
+
+    public JFormattedTextField getjTFcpf() {
+        return jTFcpf;
+    }
+
+    public void setjTFcpf(JFormattedTextField jTFcpf) {
+        this.jTFcpf = jTFcpf;
+    }
+
+    
     public JComboBox<String> getjCBxEstado() {
         return jCBxEstado;
     }
@@ -47,28 +65,12 @@ public class ViewCadastrarCliente extends javax.swing.JFrame {
         this.jTFCidade = jTFCidade;
     }
 
-    public JTextField getjTFDataNasc() {
-        return jTFDataNasc;
-    }
-
-    public void setjTFDataNasc(JTextField jTFDataNasc) {
-        this.jTFDataNasc = jTFDataNasc;
-    }
-
     public JTextField getjTFRua() {
         return jTFRua;
     }
 
     public void setjTFRua(JTextField jTFRua) {
         this.jTFRua = jTFRua;
-    }
-
-    public JTextField getjTFcpf() {
-        return jTFcpf;
-    }
-
-    public void setjTFcpf(JTextField jTFcpf) {
-        this.jTFcpf = jTFcpf;
     }
 
     public JTextField getjTFemail() {
@@ -127,8 +129,6 @@ public class ViewCadastrarCliente extends javax.swing.JFrame {
         jTFnome = new javax.swing.JTextField();
         jCBxEstado = new javax.swing.JComboBox<>();
         jCBxSexo = new javax.swing.JComboBox<>();
-        jTFDataNasc = new javax.swing.JTextField();
-        jTFcpf = new javax.swing.JTextField();
         jTFCidade = new javax.swing.JTextField();
         jTFBairro = new javax.swing.JTextField();
         jTFRua = new javax.swing.JTextField();
@@ -136,6 +136,8 @@ public class ViewCadastrarCliente extends javax.swing.JFrame {
         jTFemail = new javax.swing.JTextField();
         jBTvoltar = new javax.swing.JButton();
         jBTCadastrar = new javax.swing.JButton();
+        jTFcpf = new javax.swing.JFormattedTextField();
+        jTFDataNasc = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,6 +181,18 @@ public class ViewCadastrarCliente extends javax.swing.JFrame {
             }
         });
 
+        try {
+            jTFcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jTFDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -212,13 +226,13 @@ public class ViewCadastrarCliente extends javax.swing.JFrame {
                                     .addComponent(jCBxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jCBxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTFnome, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                                    .addComponent(jTFcpf, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                    .addComponent(jTFDataNasc)
                                     .addComponent(jTFCidade)
                                     .addComponent(jTFBairro)
                                     .addComponent(jTFRua)
                                     .addComponent(jTFemail)
-                                    .addComponent(jTFnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jTFnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTFDataNasc)
+                                    .addComponent(jTFcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -350,9 +364,9 @@ public class ViewCadastrarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTFBairro;
     private javax.swing.JTextField jTFCidade;
-    private javax.swing.JTextField jTFDataNasc;
+    private javax.swing.JFormattedTextField jTFDataNasc;
     private javax.swing.JTextField jTFRua;
-    private javax.swing.JTextField jTFcpf;
+    private javax.swing.JFormattedTextField jTFcpf;
     private javax.swing.JTextField jTFemail;
     private javax.swing.JTextField jTFnome;
     private javax.swing.JTextField jTFnumero;

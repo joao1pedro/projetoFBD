@@ -5,7 +5,7 @@
  */
 package estoque;
 
-import view.ViewMenu;
+import view.ViewLogin;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Estoque {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ViewMenu m = new ViewMenu();
+        ViewLogin m = new ViewLogin();
         m.setVisible(true);
     }
     
