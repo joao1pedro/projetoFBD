@@ -19,7 +19,7 @@ import model.ModelLogin;
  */
 public class DAOLogin {
     public boolean verificaAutenticidade(ModelLogin user) throws SQLException{
-        String sql = "SELECT * FROM login WHERE username = ? AND userPassword = ?";
+        String sql = "SELECT * FROM usuario WHERE username = ? AND userPassword = ?";
         
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;

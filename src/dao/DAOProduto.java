@@ -86,7 +86,7 @@ public class DAOProduto {
     }
 
     public List<ModelProduto> procurar(ModelProduto produto) throws SQLException {
-        String sql = "SELECT * FROM produto WHERE nome = ?";
+        String sql = "SELECT * FROM produto WHERE nome LIKE (?)";
 
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
@@ -95,19 +95,20 @@ public class DAOProduto {
 
         try {
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, produto.getNome());
+            stmt.setString(1, "%" + produto.getNome() + "%");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 if (produtos == null) {
                     produtos = new ArrayList<>();
                 }
-                produto.setId(rs.getInt("cod_prod"));
-                produto.setNome(rs.getString("nome"));
-                produto.setQuantidade(rs.getInt("quantidade"));
-                produto.setCusto(rs.getFloat("custo"));
-                produto.setValor(rs.getFloat("valor"));
-                produtos.add(produto);
+                ModelProduto prod = new ModelProduto();
+                prod.setId(rs.getInt("cod_prod"));
+                prod.setNome(rs.getString("nome"));
+                prod.setQuantidade(rs.getInt("quantidade"));
+                prod.setCusto(rs.getFloat("custo"));
+                prod.setValor(rs.getFloat("valor"));
+                produtos.add(prod);
             }
 
         } catch (SQLException ex) {

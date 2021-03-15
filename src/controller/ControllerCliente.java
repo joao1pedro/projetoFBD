@@ -99,7 +99,7 @@ public class ControllerCliente {
         ModelCliente cliente = new ModelCliente(nome);
         DAOCliente dao = new DAOCliente();
 
-        if (!dao.verificaCliente(cliente) || nome.equals(null)) {
+        if (dao.procurar(cliente) == null) {
             consultaCliente();
         } else {
             try {

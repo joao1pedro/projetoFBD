@@ -101,7 +101,7 @@ public class DAOCliente {
     }
 
     public List<ModelCliente> procurar(ModelCliente cliente) throws SQLException {
-        String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
+        String sql = "SELECT * FROM cliente WHERE nome LIKE (?)";
 
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
@@ -110,24 +110,25 @@ public class DAOCliente {
 
         try {
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, cliente.getNome() + "%");
+            stmt.setString(1, "%" + cliente.getNome() + "%");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 if (clientes == null) {
                     clientes = new ArrayList<>();
                 }
-                cliente.setCpf(rs.getString("cpf"));
-                cliente.setNome(rs.getString("nome"));
-                cliente.setSexo(rs.getString("sexo").charAt(0));
-                cliente.setDataNascimento(rs.getString("data_nascimento"));
-                cliente.setEstado(rs.getString("estado"));
-                cliente.setCidade(rs.getString("cidade"));
-                cliente.setBairro(rs.getString("bairro"));
-                cliente.setRua(rs.getString("rua"));
-                cliente.setNumero(rs.getInt("numero"));
-                cliente.setEmail(rs.getString("email"));
-                clientes.add(cliente);
+                ModelCliente cli = new ModelCliente();
+                cli.setCpf(rs.getString("cpf"));
+                cli.setNome(rs.getString("nome"));
+                cli.setSexo(rs.getString("sexo").charAt(0));
+                cli.setDataNascimento(rs.getString("data_nascimento"));
+                cli.setEstado(rs.getString("estado"));
+                cli.setCidade(rs.getString("cidade"));
+                cli.setBairro(rs.getString("bairro"));
+                cli.setRua(rs.getString("rua"));
+                cli.setNumero(rs.getInt("numero"));
+                cli.setEmail(rs.getString("email"));
+                clientes.add(cli);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,7 +147,7 @@ public class DAOCliente {
     }
 
     public boolean verificaCliente(ModelCliente cliente) throws SQLException {
-        String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
+        String sql = "SELECT * FROM cliente WHERE nome = ?";
 
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;

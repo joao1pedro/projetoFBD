@@ -77,7 +77,7 @@ public class ControllerProduto {
         ModelProduto produto = new ModelProduto(nome);
         DAOProduto daop = new DAOProduto();
 
-        if (!daop.verificaProduto(produto)) {
+        if (daop.procurar(produto) == null) {
             consultaProduto();
         } else {
             try {
