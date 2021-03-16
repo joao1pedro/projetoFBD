@@ -23,14 +23,17 @@ public class ControllerLogin {
         this.vLogin = vLogin;
     }
     
+    protected static String username = null;
+    
     public void autentica() throws SQLException{
-        String username = vLogin.jTFusername.getText();
+        username = vLogin.jTFusername.getText();
         String password = new String(vLogin.jPFpassword.getPassword());
         
         ModelLogin user = new ModelLogin(username, password);
         DAOLogin dao = new DAOLogin();
         
         if(dao.verificaAutenticidade(user)){
+   
             ViewMenu m = new ViewMenu();
             m.setVisible(true);
             vLogin.dispose();

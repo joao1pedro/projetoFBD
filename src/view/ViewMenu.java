@@ -5,12 +5,13 @@
  */
 package view;
 
+import javax.swing.JLabel;
 /**
  *
  * @author joao
  */
 public class ViewMenu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Menu
      */
@@ -32,6 +33,8 @@ public class ViewMenu extends javax.swing.JFrame {
         jBTConsultarProduto = new javax.swing.JButton();
         jBTCadastrarCliente = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jBTvendas = new javax.swing.JButton();
+        jBTrelatorioVendas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +68,20 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
 
+        jBTvendas.setText("VENDAS");
+        jBTvendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTvendasActionPerformed(evt);
+            }
+        });
+
+        jBTrelatorioVendas.setText("RELATÓRIO DE VENDAS");
+        jBTrelatorioVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTrelatorioVendasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,10 +94,12 @@ public class ViewMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBTConsultarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBTCadastrarProduto)
+                            .addComponent(jBTrelatorioVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBTvendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBTCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jBTConsultarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBTCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(298, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,7 +115,11 @@ public class ViewMenu extends javax.swing.JFrame {
                 .addComponent(jBTCadastrarCliente)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBTvendas)
+                .addGap(18, 18, 18)
+                .addComponent(jBTrelatorioVendas)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,6 +152,18 @@ public class ViewMenu extends javax.swing.JFrame {
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jBTvendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTvendasActionPerformed
+        ViewVendas vv = new ViewVendas();
+        vv.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jBTvendasActionPerformed
+
+    private void jBTrelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTrelatorioVendasActionPerformed
+        ViewRelatorioVendas vr = new ViewRelatorioVendas();
+        vr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jBTrelatorioVendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +205,8 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JButton jBTCadastrarCliente;
     private javax.swing.JButton jBTCadastrarProduto;
     private javax.swing.JButton jBTConsultarProduto;
+    private javax.swing.JButton jBTrelatorioVendas;
+    private javax.swing.JButton jBTvendas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

@@ -32,10 +32,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jBTConsultarProduto" max="32767" attributes="0"/>
-                          <Component id="jBTCadastrarProduto" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBTrelatorioVendas" max="32767" attributes="0"/>
+                          <Component id="jBTvendas" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
                           <Component id="jBTCadastrarCliente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton1" max="32767" attributes="0"/>
+                          <Component id="jBTConsultarProduto" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jBTCadastrarProduto" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -56,7 +58,11 @@
               <Component id="jBTCadastrarCliente" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="283" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jBTvendas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jBTrelatorioVendas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="201" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,6 +103,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBTvendas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="VENDAS"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBTvendasActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBTrelatorioVendas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="RELAT&#xd3;RIO DE VENDAS"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBTrelatorioVendasActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
