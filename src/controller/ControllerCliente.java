@@ -56,9 +56,12 @@ public class ControllerCliente {
         try {
 
             DAOCliente dao = new DAOCliente();
-            dao.insert(cliente);
-
-            JOptionPane.showMessageDialog(null, "Cliente com sucesso!");
+            if(dao.verificaCliente(cpf)){
+                JOptionPane.showMessageDialog(null, "Já existe um cliente com esse CPF cadastrado.");
+            } else {
+                dao.insert(cliente);
+                JOptionPane.showMessageDialog(null, "Cliente com sucesso!");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ControllerCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

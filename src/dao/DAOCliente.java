@@ -146,8 +146,8 @@ public class DAOCliente {
         return clientes;
     }
 
-    public boolean verificaCliente(ModelCliente cliente) throws SQLException {
-        String sql = "SELECT * FROM cliente WHERE nome = ?";
+    public boolean verificaCliente(String cpf) throws SQLException {
+        String sql = "SELECT * FROM cliente WHERE cpf = ?";
 
         Connection con = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
@@ -155,7 +155,7 @@ public class DAOCliente {
 
         try {
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, cliente.getNome());
+            stmt.setString(1, cpf);
             rs = stmt.executeQuery();
 
             while (rs.next()) {

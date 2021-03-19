@@ -6,13 +6,11 @@
 package controller;
 
 import dao.DAOItemVenda;
-import dao.DAOProduto;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.ModelItemVenda;
-import model.ModelProduto;
 import view.ViewVendaProdutoConsulta;
 
 /**
@@ -95,7 +93,6 @@ public class ControllerItemVenda {
             if (quantidadeDesejada > qtdEstoque) {
                 JOptionPane.showMessageDialog(null, "Não é possível vender mais itens do que a quantidade em estoque!");
             } else {
-                //int quantidade = qtdEstoque - quantidadeDesejada;
                 dao.insert(item);
                 dao.updateProduto(item, qtdEstoque - quantidadeDesejada);
                 JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!");
@@ -103,5 +100,14 @@ public class ControllerItemVenda {
         } catch (SQLException ex) {
             Logger.getLogger(ControllerItemVenda.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public void updateLabelTotal(){
+        int row = vpc.getjTable1().getSelectedRow();
+        int qtdEstoque = (int) vpc.getjTable1().getValueAt(row, 2);
+        int quantidadeDesejada = Integer.parseInt(vpc.jTFquantidade.getText());
+        float valorUnitario = Float.parseFloat(vpc.jTFvalorUnitario.getText());
+        float valorTotal = valorUnitario * quantidadeDesejada;
+        
+        vpc.jTFvalorTotal.setText(String.valueOf(valorTotal));
     }
 }
