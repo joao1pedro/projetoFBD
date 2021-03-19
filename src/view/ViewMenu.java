@@ -5,16 +5,12 @@
  */
 package view;
 
-import javax.swing.JLabel;
 /**
  *
  * @author joao
  */
 public class ViewMenu extends javax.swing.JFrame {
     
-    /**
-     * Creates new form Menu
-     */
     public ViewMenu() {
         initComponents();
     }
@@ -160,8 +156,8 @@ public class ViewMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBTvendasActionPerformed
 
     private void jBTrelatorioVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTrelatorioVendasActionPerformed
-        ViewRelatorioVendas vr = new ViewRelatorioVendas();
-        vr.setVisible(true);
+        ViewVerificaAutenticacaoUsuario va = new ViewVerificaAutenticacaoUsuario();
+        va.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBTrelatorioVendasActionPerformed
 

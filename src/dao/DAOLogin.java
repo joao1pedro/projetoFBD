@@ -49,4 +49,36 @@ public class DAOLogin {
         }
         return false;
     }
+    
+    public boolean verificaPermissao(ModelLogin user) throws SQLException{
+        String sql = "SELECT * FROM usuario WHERE username = ? AND userPassword = ? AND useradmin = true";
+        
+        Connection con = new ConnectionFactory().getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null && !rs.isClosed()) {
+                rs.close();
+            }
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
+        }
+        return false;
+    }
 }
